@@ -10,7 +10,7 @@ MMT HQ                        | https://mmt.football/                           
 BoozeBoard                    | https://boozeboard.fly.dev/healthz               | 30m | liveness, no database
 Context-Bulbs                 | https://context-bulbs.fly.dev/api/healthz        | 30m | liveness, no database
 Knight-Teleprompter           | https://knight-teleprompter.fly.dev/healthz      | 30m | static site
-MMT HQ database               | https://mmt.football/healthz                     | 6h  | pings Postgres
+MMT HQ database               | https://mmt.football/api/readyz                  | 6h  | pings Postgres
 BoozeBoard database           | https://boozeboard.fly.dev/api/readyz            | 6h  | pings Postgres
 Context-Bulbs database        | https://context-bulbs.fly.dev/api/readyz         | 6h  | pings Postgres
 Sales-Intelligence-Hub        | https://sales-intelligence-hub.fly.dev/healthz   | 6h  | scale-to-zero; boot touches Postgres
