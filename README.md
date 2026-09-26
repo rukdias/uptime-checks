@@ -11,8 +11,10 @@ including database round trips and scale-to-zero apps. When something is down or
 - Run it now: Actions → Uptime → Run workflow, or `gh workflow run uptime.yml`.
 - Run it locally: `./check.sh`.
 
-Cost: about 1,560 Actions minutes a month on a private repo (48 short runs a
-day plus 4 full ones). The tiers exist because Neon bills database compute by
+Cost: nothing. The repo is public, so Actions minutes are free (as a private
+repo it used about 1,560 of the 2,000 free minutes a month). GitHub disables
+schedules in public repos after 60 days without a commit, so the 6-hourly run
+re-enables both workflows to reset that clock. The tiers exist because Neon bills database compute by
 the hour and stays awake 5 minutes after any query: checking every database
 every 30 minutes would keep them awake about a sixth of the time.
 
