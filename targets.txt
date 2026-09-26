@@ -1,9 +1,18 @@
-# name | url that must answer 2xx | notes
-# Prefer a URL that touches the database, so a Neon outage counts as down.
-MMT HQ                 | https://mmt.football/healthz                     | pings Postgres
-BoozeBoard             | https://boozeboard.fly.dev/healthz               | pings Postgres
-Context-Bulbs          | https://context-bulbs.fly.dev/api/readyz         | pings Postgres
-Sales-Intelligence-Hub | https://sales-intelligence-hub.fly.dev/healthz   | process only
-Knight-Teleprompter    | https://knight-teleprompter.fly.dev/healthz      | static site, no database
-Rune-Reels             | https://rune-reels.fly.dev/api/movies            | reads Postgres
-TVesta                 | https://tvesta.fly.dev/api/settings              | reads Postgres
+# name | url that must answer 2xx | tier | notes
+#
+# tier "30m": runs every 30 minutes. Only URLs that can't wake anything that
+#   is asleep: always-on machines' liveness routes, and Knight (no database).
+# tier "6h": runs every 6 hours. Database round trips and scale-to-zero apps.
+#   Neon bills compute by the hour and keeps a database awake for 5 minutes
+#   after any query, and a scale-to-zero app touches its database on boot, so
+#   checking these every 30 minutes would cost more than the apps themselves.
+MMT HQ                        | https://mmt.football/                            | 30m | SPA, no database
+BoozeBoard                    | https://boozeboard.fly.dev/healthz               | 30m | liveness, no database
+Context-Bulbs                 | https://context-bulbs.fly.dev/api/healthz        | 30m | liveness, no database
+Knight-Teleprompter           | https://knight-teleprompter.fly.dev/healthz      | 30m | static site
+MMT HQ database               | https://mmt.football/healthz                     | 6h  | pings Postgres
+BoozeBoard database           | https://boozeboard.fly.dev/api/readyz            | 6h  | pings Postgres
+Context-Bulbs database        | https://context-bulbs.fly.dev/api/readyz         | 6h  | pings Postgres
+Sales-Intelligence-Hub        | https://sales-intelligence-hub.fly.dev/healthz   | 6h  | scale-to-zero; boot touches Postgres
+Rune-Reels                    | https://rune-reels.fly.dev/api/movies            | 6h  | scale-to-zero; reads Postgres
+TVesta                        | https://tvesta.fly.dev/api/settings              | 6h  | scale-to-zero; reads Postgres

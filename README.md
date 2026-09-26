@@ -1,7 +1,9 @@
 # uptime-checks
 
-Every 30 minutes a GitHub Action checks the apps in `targets.txt` and the TLS
-certificates in `certs.txt`. When something is down or a certificate is within
+A GitHub Action checks the apps in `targets.txt` and the TLS certificates in
+`certs.txt`: every 30 minutes for the targets marked `30m` (liveness routes that
+can't wake a sleeping database or machine), and every 6 hours for everything,
+including database round trips and scale-to-zero apps. When something is down or a certificate is within
 14 days of expiring, the run fails (GitHub emails you) and an issue labelled
 `down` opens; the next healthy run comments and closes it.
 
@@ -9,9 +11,10 @@ certificates in `certs.txt`. When something is down or a certificate is within
 - Run it now: Actions → Uptime → Run workflow, or `gh workflow run uptime.yml`.
 - Run it locally: `./check.sh`.
 
-Cost: one ~1-minute job per run, about 1,440 Actions minutes a month on a
-private repo. Making the repo public makes them free and allows a tighter
-schedule; nothing here is secret.
+Cost: about 1,560 Actions minutes a month on a private repo (48 short runs a
+day plus 4 full ones). The tiers exist because Neon bills database compute by
+the hour and stays awake 5 minutes after any query: checking every database
+every 30 minutes would keep them awake about a sixth of the time.
 
 ## Browser smoke tests
 

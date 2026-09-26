@@ -12,9 +12,12 @@ failed=0
 
 trim() { local s="$1"; s="${s#"${s%%[![:space:]]*}"}"; echo "${s%"${s##*[![:space:]]}"}"; }
 
-while IFS='|' read -r name url _; do
-  name=$(trim "$name"); url=$(trim "${url:-}")
+# TIER=30m checks only the 30m targets; TIER=all (default) checks everything.
+TIER=${TIER:-all}
+while IFS='|' read -r name url tier _; do
+  name=$(trim "$name"); url=$(trim "${url:-}"); tier=$(trim "${tier:-30m}")
   [[ -z "$name" || "$name" == \#* ]] && continue
+  [[ "$TIER" == "30m" && "$tier" != "30m" ]] && continue
   # Scale-to-zero apps take a few seconds to wake; retry before calling it down.
   code=000; secs=0
   for attempt in 1 2 3; do
