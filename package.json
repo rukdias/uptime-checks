@@ -1,0 +1,12 @@
+{
+  "name": "uptime-checks-smoke",
+  "private": true,
+  "description": "Read-only end-to-end smoke tests against the production web apps",
+  "scripts": {
+    "smoke": "playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}
