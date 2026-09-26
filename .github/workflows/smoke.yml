@@ -7,10 +7,6 @@ on:
   schedule:
     - cron: "17 11 * * *"
   workflow_dispatch:
-  # TEMPORARY: workflow_dispatch only works once this file is on main, so a
-  # push to this branch runs it for verification. Remove before merging.
-  push:
-    branches: [smoke-tests]
 
 concurrency:
   group: smoke
