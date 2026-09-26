@@ -1,0 +1,52 @@
+name: Uptime
+
+# Every 30 minutes (GitHub may start scheduled runs a few minutes late).
+# A failing run makes GitHub email the repo owner, and an open "down" issue
+# tracks the outage; it closes itself on the first healthy run.
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check apps and certificates
+        id: check
+        run: ./check.sh
+        continue-on-error: true
+      - name: Open, update or close the outage issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUTCOME: ${{ steps.check.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create down --color B60205 --description "An app or certificate check is failing" 2>/dev/null || true
+          open=$(gh issue list --label down --state open --json number --jq '.[0].number // empty')
+          if [ "$OUTCOME" = "success" ]; then
+            if [ -n "$open" ]; then
+              gh issue comment "$open" --body "Recovered: all checks passing. $RUN_URL"
+              gh issue close "$open"
+            fi
+          else
+            body="$(cat report.md)"$'\n\n'"Run: $RUN_URL"
+            if [ -n "$open" ]; then
+              gh issue comment "$open" --body "$body"
+            else
+              gh issue create --title "Something is down" --label down --body "$body"
+            fi
+          fi
+      - name: Fail the run when something is down
+        if: steps.check.outcome != 'success'
+        run: exit 1

@@ -1,0 +1,9 @@
+# name | url that must answer 2xx | notes
+# Prefer a URL that touches the database, so a Neon outage counts as down.
+MMT HQ                 | https://mmt.football/healthz                     | pings Postgres
+BoozeBoard             | https://boozeboard.fly.dev/healthz               | pings Postgres
+Context-Bulbs          | https://context-bulbs.fly.dev/api/readyz         | pings Postgres
+Sales-Intelligence-Hub | https://sales-intelligence-hub.fly.dev/healthz   | process only
+Knight-Teleprompter    | https://knight-teleprompter.fly.dev/healthz      | static site, no database
+Rune-Reels             | https://rune-reels.fly.dev/api/movies            | reads Postgres
+TVesta                 | https://tvesta.fly.dev/api/settings              | reads Postgres

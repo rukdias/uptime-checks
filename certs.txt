@@ -1,0 +1,4 @@
+# Custom domains whose TLS certificates are worth watching (Fly renews them,
+# but a DNS change can silently stop renewal). *.fly.dev is Fly's own cert.
+mmt.football
+boozeboard.rukdias.com
