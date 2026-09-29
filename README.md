@@ -25,7 +25,8 @@ at desktop (1280x800) and phone (375x812) sizes, and walks the main public
 flows: landing pages, the MMT demo league and its standings, the BoozeBoard TV
 display, phone menu and demo admin tabs, the Context-Bulbs docs and not-found
 states, the Nexus login tabs, the Knight prompter dialog, Rune Reels film
-pages and the TVesta board. One spec per app lives in `tests/`.
+pages, the TVesta board, the Checkmate Labs studio and product pages, and
+rukdias.com's projects. One spec per app lives in `tests/`.
 
 Every test also fails on a console error, an uncaught exception, a same-origin
 response >= 400 (401s from signed-out session probes and 404s a test expects

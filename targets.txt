@@ -15,7 +15,7 @@ Ruk Dias                      | https://rukdias.fly.dev/healthz                 
 MMT HQ database               | https://mmt.football/api/readyz                  | 6h  | pings Postgres
 BoozeBoard database           | https://boozeboard.fly.dev/api/readyz            | 6h  | pings Postgres
 Context-Bulbs database        | https://context-bulbs.fly.dev/api/readyz         | 6h  | pings Postgres
-Ruk Dias database             | https://rukdias.fly.dev/api/skills               | 6h  | reads Postgres
+Ruk Dias database             | https://rukdias.fly.dev/api/readyz               | 6h  | pings Postgres
 Sales-Intelligence-Hub        | https://sales-intelligence-hub.fly.dev/healthz   | 6h  | scale-to-zero; boot touches Postgres
 Rune-Reels                    | https://rune-reels.fly.dev/api/movies            | 6h  | scale-to-zero; reads Postgres
 TVesta                        | https://tvesta.fly.dev/api/settings              | 6h  | scale-to-zero; reads Postgres
