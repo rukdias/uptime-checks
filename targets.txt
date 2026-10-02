@@ -12,6 +12,8 @@ Context-Bulbs                 | https://context-bulbs.fly.dev/api/healthz       
 Knight-Teleprompter           | https://knight-teleprompter.fly.dev/healthz      | 30m | static site
 Checkmate Labs                | https://checkmate-labs.fly.dev/healthz           | 30m | static site
 Ruk Dias                      | https://rukdias.fly.dev/healthz                  | 30m | liveness, no database
+# MMT HQ is a priority production app; retain its database readiness check.
+MMT HQ database               | https://mmt.football/api/readyz                  | 6h  | priority production database
 # Priority production databases are intentionally not checked here: regular
 # health checks would keep Neon compute awake and add cost. Use each app's
 # own monitoring/alerts for database health instead.
