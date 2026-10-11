@@ -8,7 +8,6 @@
 # their databases and create avoidable compute charges.
 MMT HQ                        | https://mmt.football/                            | 30m | SPA, no database
 BoozeBoard                    | https://boozeboard.fly.dev/healthz               | 30m | liveness, no database
-Context-Bulbs                 | https://context-bulbs.fly.dev/api/healthz        | 30m | liveness, no database
 Knight-Teleprompter           | https://knight-teleprompter.fly.dev/healthz      | 30m | static site
 Checkmate Labs                | https://checkmate-labs.fly.dev/healthz           | 30m | static site
 Ruk Dias                      | https://rukdias.fly.dev/healthz                  | 30m | liveness, no database
