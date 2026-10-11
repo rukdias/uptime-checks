@@ -26,8 +26,8 @@ flows: landing pages, the MMT demo league and its standings, the BoozeBoard TV
 display, phone menu and demo admin tabs, the Knight prompter dialog, Rune
 Reels film pages, the TVesta board, the Checkmate Labs studio and product
 pages, and rukdias.com's projects. One spec per app lives in `tests/`.
-ContextBulbs and Nexus were permanently retired on October 11, 2026; their
-app, certificate, and browser checks have been removed.
+Monitoring for ContextBulbs and Nexus was retired on October 11, 2026;
+their app, certificate, and browser checks have been removed.
 
 Every test also fails on a console error, an uncaught exception, a same-origin
 response >= 400 (401s from signed-out session probes and 404s a test expects
